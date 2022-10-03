@@ -1,0 +1,389 @@
+5/09/2022
+1.FIND THE SUM OF TWO NUMBERS GIVE THE INPUT FROM COMMAND LINE ARGUMENTS USING ECLIPSE.
+2.WRITE A PROGRAM TO CHECK ENTERED NUMBER IS ARMSTRONG OR NOT.
+3.WRITE A PROGRAM TO CREATE A JAGGED ARRAY.
+4.ENTER THE 7 ELEMENTS FROM KEYBOARD STORE IT IN ARRAY USING BUBBLE/SELECTION SORT DISPLAY ARRAY ELEMENTS IN ASCENDING ORDER.
+
+1ans:-
+class Adding{
+public static void main(String args[]){
+int a=Integer.parseInt(args[0]);
+int b=Integer.parseInt(args[1]);
+int s=a+b;
+System.out.println("sum"+s);
+}
+}
+
+2ans:-
+import java.util.*;
+import java.lang.*;
+class Armstrong{
+public static void main(String args[])
+{
+Scanner s=new Scanner(System.in);
+System.out.println("enter number:");
+int n=s.nextInt();
+int  original ,remainder,result=0;
+original=n;
+while(original!=0)
+{
+remainder=original%10;
+result+=Math.pow(remainder,3);
+original/=10;
+}
+if(result==n)
+System.out.println(n+"is a armstrong");
+else
+System.out.println(n+"not");
+}
+}
+
+3ans:-
+class Jagged {
+    public static void main(String[] args)
+    {
+        int r = 5;
+        int arr[][] = new int[r][];
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = new int[i + 1];
+        int count = 0;
+        for (int i = 0; i < arr.length; i++)
+            for (int j = 0; j < arr[i].length; j++)
+                arr[i][j] = count++;
+        System.out.println("Contents of 2D Jagged Array");
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++)
+                System.out.print(arr[i][j] + " ");
+            System.out.println();
+        }
+    }
+}
+
+4ans:-
+import java.util.*;
+class Sort{
+static  void bubbleSort(int array[]) {
+    int size = array.length;
+    for (int i = 0; i < size - 1; i++)
+      for (int j = 0; j < size - i - 1; j++)
+        if (array[j] > array[j + 1]) {
+          int temp = array[j];
+          array[j] = array[j + 1];
+          array[j + 1] = temp;
+        }
+  }
+
+
+
+   public static void main(String args[]) {
+    Scanner s=new Scanner(System.in);
+    System.out.println("enter no.of elements:");
+    int n=s.nextInt();
+    int a[]=new int[n];
+    System.out.println("enter elements");
+    for(int i=0;i<a.length;i++)
+    {
+     a[i]=s.nextInt();
+     }
+
+
+
+   Sort.bubbleSort(a);
+    
+    System.out.println("Sorted Array in Ascending Order:");
+    System.out.println(Arrays.toString(a));
+  }
+}
+
+
+
+
+
+6/09/2022
+
+1.W.A.P TO INVOKE COPY CONSTRUCTOR
+
+2.W.A.P TO PROVE THAT THIS REFERS TO "current class instances
+
+3.CREATE A CLASS CALLED EMP WITH ID,NAME,DES AND BASIC SALARY READ FROM THE KEYBOARD
+CALCULATE NET SALARY
+NETSALARY=BASICSALARY+DA(150% OF BASIC SALARY)+HRA(30% OF BASIC SAL)+CCA(500)-TAX(1000)
+USE CONSTRUCTORS AND METHODS
+
+4.USING THE OOPS CONCEPTS AND STATIC METHOD FIND THE AREA OF TRIANGLE AND RECTANGLE.
+
+
+1ans:-
+class Abc{
+int a; int b;
+Abc(int l, int m) {   
+a= l; b= m;
+}
+//copy constructor
+Abc(Abc obj) {
+System.out.println("Copy Constructor Invoked");
+a= obj.a; b= obj.b;
+}
+int display() {
+return (a * b);
+}
+}
+class CopyConstructor {
+public static void main(String[] args)
+{
+Abc abc = new Abc(5,6);
+Abc abc1= new Abc(abc);
+System.out.println("mul-1: "+ abc.display());
+System .out.println("mul-2: "+ abc1.display());
+}
+}
+
+
+2ans:-
+class Person{
+int id;
+String name;
+Person(int id,String name)
+{
+id=id;//this.id=id;
+name=name;//this.name=name;
+}
+void dis(){
+System.out.println(id+"\t"+name);
+}
+public static void main(String args[]){
+Person p=new Person(101857,"Alekhya");
+p.dis();
+}
+}
+
+4ans:-
+
+class Test{
+static int l=2,b=5;
+static void display(){
+System.out.println("Area of triangle:"+((l+b)/2));
+System.out.println("Area of rectangle:"+(l*b));
+}
+public static void main (String args[]){
+Test t=new Test();
+display();
+}
+}
+
+7/09/2022
+
+1.Prove that abstract class is used to show the implementation of interface methods
+2.Create a public interface in one package, create a class in another package and implement that interface
+3.write a program to nest interface in a class
+4.create a class called emp with id, name des and basic salary read from keyboard calculate
+net salary =basic salary+da(150% of basic salary)+hra(30% of basic sal)+cca(500)-tax(100) use inheritance concepts
+
+3ans:-
+
+import java.util.*;
+class Test
+{
+	protected interface Yes
+	{
+		void show();
+	}
+}
+
+class Testing implements Test.Yes
+{
+	public void show()
+	{
+		System.out.println("show method of interface");
+	}
+}
+
+class A
+{
+	public static void main(String[] args)
+	{
+		Test.Yes obj;
+		Testing t = new Testing();
+		obj=t;
+		obj.show();
+	}
+}
+
+
+9/09/2022
+1. write a mutli thread program to send the messages asychrononous using synchorized key word
+2. write a mutli thread program to illustrate deadlock
+
+
+2ans:-
+package sep_10;
+public class DeadLock {
+public static void main(String[] args) {
+    String s1="Sai";
+    String s2="Praveen";
+    Thread t=new Thread()
+            {
+        @Override
+        public void run()
+        {
+            synchronized(s1)
+            {
+                System.out.println("thread 1 locks s1");
+                try {
+                    Thread.sleep(1000);
+                }
+                catch(Exception e)
+                {    
+                }
+                synchronized(s2) {
+                    System.out.println("thread 1 locks s2");
+                }    
+            }
+        }
+            };
+            Thread t2=new Thread()
+                    {
+                @Override
+                public void run()
+                {
+                    synchronized(s2)
+                    {
+                        System.out.println("thread 2 locks s2");
+                        try {
+                            Thread.sleep(1000);
+                        }
+                        catch(Exception e)
+                        {    
+                        }
+                        synchronized(s1) {
+                            System.out.println("thread 2 locks s1");
+                }
+                    }
+                }
+                    };
+                    t.start();
+                    t2.start();
+}
+}
+
+12-09-2022
+
+1.ENTER 8 INTEGERS IN VECTOR AND FIND MIN AND MAX VALUE OF THOSE INTEGERS.
+2.CREATE A CLASS CALLED COURSE WITH ID NAME AND DURATION INSERT 5 OBJECTS OF COURSE IN TreeSet AND SORT ON NAME USING Comparator interface.
+3.INSERT 5 ENRIES OF NAME(KEY) AND SALARIES(VALUE) IN HASHMAP AND SORT ON SALARIES.
+
+1ans:-
+import java.util.*;
+import java.util.Collections;
+import java.util.Vector;
+public class vector{
+  
+    public static void main(String args[])
+    {
+  
+        Vector<Integer> v= new Vector<Integer>();
+  
+        v.add(1);
+        v.add(10);
+        v.add(100);
+        v.add(20);
+        v.add(16);
+        v.add(45);
+        v.add(50);
+  
+        System.out.println("Vector elements: " + v);
+        
+        System.out.println("The minimum element of the Vector is: "
+            + Collections.min(v));
+        System.out.println("The maximum element of the Vector is: "
+                + Collections.max(v));
+           
+        
+    }
+}
+
+2nas:-
+import java.util.*;
+class course1{
+int id;
+String name;
+int time;
+course1(int id,String name,int time){
+    super();
+    this.id=id;
+    this.name=name;
+    this.time=time;
+}
+@Override
+public String toString() {
+    return "course [id =" + id + ", name = " + name + ", time " + time + " hrs]";
+}
+}
+class nam1e implements Comparator<course1>{
+    @Override
+    public int compare(course1 o1,course1 o2) {
+        return o1.name.compareTo(o1.name);
+    }
+    
+}
+public class course{
+    public static void main(String[] args) {
+        LinkedList<course1>l =new LinkedList<course1>();
+        course1 o1=new course1(100,"java",2);
+        course1 o2=new course1(102,"dbms",1);
+        course1 o3=new course1(101,"c++",3);
+        l.add(o1);l.add(o2);l.add(o3);
+         for(course1 name: l)
+            {
+                System.out.println(name);
+            }   
+
+
+
+       
+        
+    }
+
+
+
+}
+
+
+3ans:-
+import java.util.*;
+public class Employee {
+public static void main(String[] args) {
+    HashMap<String,Double>h=new HashMap<String,Double>();
+    h.put("alekhya",35000.00);h.put("akhila",20000.00);h.put("meghana",22000.00);h.put("praveen",21000.00);
+    System.out.println(h);
+    Set<String>name=h.keySet();
+    for(String s:name) {
+        System.out.println(s+"\t"+h.get(s));
+    }
+    }
+}
+
+
+
+
+13-09-2022
+
+1.write a program to display multiplication table of 5 using Stream API's iterator() method
+2.write program to enter and 10 Strings in ArrayList count the no of Strings whose length is > 5
+3.write a and find program first to enter 10 integers in array list and finf first s 4 even nos by using STREAM api
+4.create a class called product with id name and price insert s5 object in arraylist and convert to map display id as key and name as value in the form of Map
+
+
+
+14-09-2022
+1.write a JDBC program to retrieve data from data basethrough collection using maven project and generate jar file
+using maven goal and execute program through jar and show the o/p on cmd.
+
+
+PROJECT AS ONLINE SHOPPING CART By Teams
+
+
+22-09-2022
+Write a spring mvc program to dipslay helloworld with out using xml file use java based configuration approach
+
+

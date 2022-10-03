@@ -1,0 +1,139 @@
+25/08/2022
+
+write a query for following
+1)find the 4th least salary
+2) display the names of employees of each job who takes min salary which mut not exceeds30000
+3) display the names of employees who are also managers
+4) display the names of managers
+who are taking salary avg salary of all employees of it department
+5) find the avg of salary of each job truncate it to 2 digits
+
+
+Answers:-
+1.select min(salary) from(select *from(select*from emp1 order by salary asc) emp1 limit 4) emp1;s
+2. select name, des, salary from emp where salary in(select min(salary) from emp group by des having min(salary) <=38000)
+3.select c1.name from customer c1, customer c2 where c1.id=c2. managerid;
+4. select name from emp where salary ›(select avg (salary) from emp where des='IT");
+5. select
+avg(salary) from(select ave(salary) from (emp1)where truncate (avg(salary),2)) group by des;
+
+
+
+29-08-2022
+# SQL, Types of Commands and their Groups
+#Data Types used
+#One example for each command in DDL, DML
+#RDBMS
+
+-----------------
+
+--SQL: Stands for Stuructured Queury Language. SQL is a standard language for storing, manipulating and retrieving data in databases.
+Types of commands and their groups : There are 4 types of commands in sql. they are
+ 1. DDL : Data Defination Language. some of the commands are
+		CREATE – create a new Table, database, schema
+		ALTER – alter existing table, column description 
+		DROP – delete existing objects from database, 
+ 2. DML: Data Manupulation Language. Some of the commands are.,
+		INSERT – insert new records
+		UPDATE – update/Modify existing records
+		DELETE – delete existing records
+ 3. DCL : Data Control Language, some of the commands are.,
+		GRANT – allows users to read/write on certain database objects
+		REVOKE – keeps users from read/write permission on database objects 
+ 4. TCL: Transmission Control Language. Some of the commands are.,
+		BEGIN Transaction – opens a transaction 
+ 		COMMIT Transaction – commits a transaction 
+ 		ROLLBACK Transaction – ROLLBACK a transaction in case of any error
+-------------------------
+
+--Data Types used in SQL:
+--> String Data Types:
+	char(n)
+	varchar(n)	
+	text
+	binary(n)	
+	varbinary
+	image
+
+-->Numaric Data Types:
+	int
+	decimal(p,s)	
+	float(n)	
+
+--> Date and Time Data Types:
+	datetime
+	date
+	time
+-------------------------
+	
+--Example of DDL and DML commands.
+
+(##DDL COMMAND)
+CREATE table sai(id, name, dob, des, salary)					//for creating the table
+
+
+(##DML COMMAND)
+INSERT into sai values(1,'rahul','28-07-1999','manager', '45,000'),
+			(2,'ram','28-10-1999','manager', '50,000'),
+			(3,'ramesh','22-07-1999','engg', '25,000'),
+			(4,'rupesh','28-07-1989','tech', '15,000'); 		// Inserting the values in the table
+
+UPDATE sai set des='CEO' where name= 'sai'; 				//It will update the des of sai from manager to CEO
+
+
+(##DDL COMMAND)
+DROP table sai ;								//It will delete the sai  from database.
+
+
+-------------------------
+
+--RDBMS
+	RDBMS stands for Relational DataBase Management System.
+ ->All modern database management systems like SQL, MS SQL Server, IBM DB2, ORACLE, My-SQL and Microsoft Access are based on RDBMS.
+ ->It is called Relational Data Base Management System (RDBMS) because it is based on relational model introduced by E.F. Codd.
+The RDBMS database uses tables to store data. A table is a collection of related data entries and contains rows and columns to store data.
+ A table is the simplest example of data storage in RDBMS.
+
+
+DAY2::
+1.DISPLAY THE NAMES OF EMPLOYEES EXCEPT THE SALARIES WITH 30000.
+2.DISPLAY THE NUMBER OF EMPLOYEES IN EACH DEPARTMENT WHOSE SALARY IS GREATER THAN 35000.
+3.DISPLAY THE NAMES OF EMPLOYEES WHOSE SALARY IS GREATER THAN ANY OF THE SALARIES IN IT DEPARTMENT.
+4.USING SUB QUERY INCREASE THE SALARY OF EACH EMPLOYEE BY 500 AND DISPLAY THE NAMES OF EMPLOYEES WITH HIGHEST SALARY IN EACH DEPARTMENT.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+1.select name from coforge where salary<>'30000';
+2.select count(*) from coforge where salary>35000 group by dname;
+3.select name from coforge where salary>any(select salary from coforge group by dname='IT');
+4.update coforge set salary=salary+500 , select name,max(salary),dname from coforge group by dname;
+
+
+
+
+
+DAY3::
+1.DISPLAY THE NAMES OF EMPLOYEES WHOSE SALARY IS GREATER THAN THE LEAST SALARY IN IT DEPARTMENT.
+2.DISPLAY THE NAMES OF EMPLOYEES WHOSE CITY IS CHENNAI AND SALARY GREATER THAN THE SALARY OF EMPLOYEES IN THE CITY OF GOA.
+3.ADD A COLUMN INTO THE TABLE AND INSERT ALL THE VALUES INTO THE COLUMN AT A TIME.
+------------------------------------------------------------------------------------------------------------------------------------------ 
+
+1.select name from coforge where salary>any(select salary from coforge group by dname='IT');
+2. select name from coforge where city='chennai' and salary>all(select salary from coforge where city='goa');
+3.
+
+
+
+
+
+DAY 4::
+1.DISPLAY THE NAMES OF EMPLOYEES WHOSE BIRTH YEAR IS 2000.
+2.DISPLAY SALARY IN DOLLARS.
+3.DISPLAY DESIGNATION OF VAMSHI.
+-----------------------------------------------------------------------------------------------------
+1.
+2.select name,salary/79 salindollar from coforge;
+3. SELECT des FROM coforge WHERE name='vamshi';
+
+
+
+
